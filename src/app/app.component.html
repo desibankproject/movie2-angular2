@@ -36,7 +36,8 @@
 				Story  :
 				<textarea  [(ngModel)]='movie.story' name="story" rows="2" cols=""  class="form-control" style="width: 50%"></textarea>
 			<br/> 	
-			<button type="button" class="btn btn-primary"  (click)="addMovie();">Add Movie</button>
+    
+			<button type="button" class="btn btn-primary"  (click)="addMovie();">{{buttonTitle}}</button>
 	</form>
 	<hr/>
 	<table class="table table-bordered" >
@@ -51,7 +52,9 @@
 			<td><img src="{{movie.poster}}" style="height: 100px;"></td>
 			<td>
 					<a [routerLink]="" (click)="deleteMovie(movie)"><img src="assets/img/delete.jfif" style="height: 60px;">
-			
+					</a>
+					  /
+						<a [routerLink]="" (click)="editMovie(movie)"><img src="assets/img/edit.png" style="height: 60px;">
 					</a>
 				</td>
 		</tr>
