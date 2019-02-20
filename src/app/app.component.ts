@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Movie} from './models/movie.model'
+import { MovieService } from './services/movie.service';
+//import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'movie2';
   public message:String="";
   //Movie movie=new Movie();
@@ -14,6 +16,31 @@ export class AppComponent {
   public movie:Movie=new Movie();
   public buttonTitle="Add Movie"; 
   public tmovies:Movie[]=[];
+
+  public remoteMovies:Movie[]=[];
+
+  //private movieService:MovieService;
+  constructor(private movieService:MovieService) {
+    //this.movieService=movieService;
+    
+  }
+
+  ngOnInit() {
+      //data will hold Movie[]
+     /// let response: Observable<Movie[]>=this.movieService.getMovies();
+    //  response.subscribe(data=>{
+      //  console.log("Loading data from");
+      //  console.log(data);
+      //});
+      this.movieService.getMovies().subscribe(response=>{
+          console.log("Loading data from");
+          console.log(response);
+          this.remoteMovies=response;
+      });
+   
+  }
+
+
 
   //This method we want to call  when 
   //add movie button is clicked........

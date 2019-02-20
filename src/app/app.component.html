@@ -59,6 +59,29 @@
 				</td>
 		</tr>
     </tbody>
+	</table>
+	
+	<hr/>
+	<h2>Below is remote data coming from rest api</h2>
+	<table class="table table-bordered" >
+        <tr><th>Title</th><th>Director</th><th>Year</th><th>Language</th><th>Story</th><th>Image</th><th>Action</th></tr>
+    <tbody>
+		<tr *ngFor="let movie of remoteMovies">
+			<td>{{movie.title}}</td>
+			<td>{{movie.director}}</td>
+			<td>{{movie.year}}</td>
+			<td>{{movie.language}}</td>
+			<td>{{movie.story}}</td>
+			<td><img src="{{movie.poster}}" style="height: 100px;"></td>
+			<td>
+					<a [routerLink]="" (click)="deleteMovie(movie)"><img src="assets/img/delete.jfif" style="height: 60px;">
+					</a>
+					  /
+						<a [routerLink]="" (click)="editMovie(movie)"><img src="assets/img/edit.png" style="height: 60px;">
+					</a>
+				</td>
+		</tr>
+    </tbody>
   </table>
 </div>
 <app-footer></app-footer>
