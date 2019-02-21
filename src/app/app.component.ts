@@ -14,8 +14,10 @@ export class AppComponent implements OnInit{
   //Movie movie=new Movie();
   //instantiating blank object of the Movie
   public movie:Movie=new Movie();
+  public  selectedFile : File;
   public buttonTitle="Add Movie"; 
   public tmovies:Movie[]=[];
+  public imagePreview:String="";
 
   public remoteMovies:Movie[]=[];
 
@@ -23,6 +25,28 @@ export class AppComponent implements OnInit{
   constructor(private movieService:MovieService) {
     //this.movieService=movieService;
     
+  }
+
+  public onFileChanged(event):void {
+    console.log("_________NAGENDRA____________");
+    console.log(event.target.files[0]);
+    //hey we have to upload this file on server using rest api
+    this.selectedFile = event.target.files[0];
+
+    //Special code to preview the image
+    //Below Code for image preview only ...this is not mandetory !!!
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    let timagePreview;
+    reader.onload = (event) => {
+                      // reading selected image 
+       timagePreview = (<FileReader>event.target).result;
+       //data:image/jpeg;base64
+       this.imagePreview=timagePreview;
+       console.log(this.imagePreview);
+     //this.imageShow = URL of the image
+    }
+
   }
 
   ngOnInit() {
@@ -41,6 +65,21 @@ export class AppComponent implements OnInit{
   }
 
 
+
+   public uploadMovie() :void {
+      console.log(this.movie);
+      //calling service layer method here
+      this.movieService.uploadMovie(this.movie,this.selectedFile).subscribe(data=>{
+        console.log("_@)@)@)@)hey uploaded");
+        console.log("____this special data...")
+        console.log(data.body);
+        //because we want to show this on GUI as well
+          this.message="Hey! your movie has been upload successfully....";
+      });
+
+      this.remoteMovies.push(this.movie);
+
+   }
 
   //This method we want to call  when 
   //add movie button is clicked........
@@ -76,9 +115,13 @@ export class AppComponent implements OnInit{
   }
 
   public deleteMovie(dmovie):void {
-    this.tmovies=this.tmovies.filter(t=>t.title!=dmovie.title);
-    this.message="Hey! your movie has been deleted successfully....";
-  }
+    this.movieService.deleteMovieByMid(dmovie.mid).subscribe(data=>{
+      console.log("Deleting the movie");
+      console.log(data);
+      this.remoteMovies=this.remoteMovies.filter(t=>t.mid!=dmovie.mid);
+      this.message="Hey! your movie has been deleted successfully....";
+    });
+   }
 
   public editMovie(emovie):void {
     this.buttonTitle="Update Movie";
