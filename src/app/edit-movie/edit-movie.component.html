@@ -1,0 +1,37 @@
+
+    <span id="errorMessage" style="color:red;font-size: 18px;">{{message}}</span>	
+    <h1>Edit Movie Form</h1>
+  	<form id="movieForm" name="movieForm" action="movies" method="post">
+			Title :
+			<input type="text" name="title" [(ngModel)]='movie.title' class="form-control" style="width: 50%"> 	
+			<br/> 	
+			Year :
+			<select name="year" [(ngModel)]='movie.year'  class="form-control" style="width: 50%">
+					<option>2018</option>
+					<option>2019</option>
+					<option>2020</option>
+					<option>2021</option>
+					<option>2022</option>
+			</select>
+			<br/> 	
+				Director :
+			<input type="text" name="director" [(ngModel)]='movie.director' class="form-control" style="width: 50%"> 	
+			<br/> 	
+			Language :
+			<select name="language" [(ngModel)]='movie.language'  class="form-control" style="width: 50%">
+					<option>English</option>
+					<option>Hindi</option>
+						<option>Russian</option>
+			</select>
+			<br/> 	
+			Poster :
+			<input type="file" name="poster" id="poster" class="form-control" style="width: 80%" (change)="onFileChanged($event)"> 	
+			<img src="{{imagePreview}}" style="height: 80px;" class="img-thumbnail">
+			<br/> 	
+				Story  :
+				<textarea  [(ngModel)]='movie.story' name="story" rows="2" cols=""  class="form-control" style="width: 50%"></textarea>
+			<br/> 	
+    
+			<button type="button" class="btn btn-primary"  (click)="uploadMovie();">Update Movie</button>
+  </form>
+  <br/><br/><br/>

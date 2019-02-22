@@ -21,6 +21,12 @@ export class MovieService {
        return this.http.get<Movie[]>(MOVIES_REST_API);
   }
 
+  public getMovieByMid(_mid):Observable<Movie>{
+    //METHOD=GET
+       const MOVIES_REST_API="http://localhost:4000/movies/"+_mid;
+       return this.http.get<Movie>(MOVIES_REST_API);
+  }
+
   public uploadMovie(movie:Movie,selectedFile :File): Observable<any>{
     console.log("-----service layer method is called!!!!!!!!!!!");
     console.log(movie);
