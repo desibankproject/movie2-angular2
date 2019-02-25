@@ -19,8 +19,10 @@ export class ShowMoviesComponent implements OnInit {
   public tmovies:Movie[]=[];
   public imagePreview:String="";
 
-  public remoteMovies:Movie[]=[];
+  public color:String="blue";
 
+  public remoteMovies:Movie[]=[];
+  public error:String=""; 
   //private movieService:MovieService;
   constructor(private movieService:MovieService) {
     //this.movieService=movieService;
@@ -32,7 +34,7 @@ export class ShowMoviesComponent implements OnInit {
       console.log("Loading data from");
       console.log(response);
       this.remoteMovies=response;
-  });
+  },  error =>this.error = error);
   }
 
   

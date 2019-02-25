@@ -1,5 +1,12 @@
 <hr/>
-	<h2>Below is remote data coming from rest api</h2>
+	<h2 appChangecolor [nagendra]="color">Below is remote data coming from rest api</h2>
+	// inside the html file
+
+<div class="row" *ngIf="error.length > 0">
+    <div class="col-sm-12 alert alert-warning">
+    {{error}}
+  </div>
+</div>
 	<table class="table table-bordered" >
         <tr><th>Title</th><th>Director</th><th>Year</th><th>Language</th><th>Story</th><th>Image</th><th>Action</th></tr>
     <tbody>
