@@ -11,6 +11,8 @@ import { AddMovieComponent } from './add-movie/add-movie.component';
 import { ShowMoviesComponent } from './show-movies/show-movies.component';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { ChangecolorDirective } from './directive/changecolor.directive';
+import { ShowHideDirective } from './directive/show-hide.directive';
+import { ShowimageComponent } from './showimage/showimage.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ChangecolorDirective } from './directive/changecolor.directive';
     AddMovieComponent,
     ShowMoviesComponent,
     EditMovieComponent,
-    ChangecolorDirective
+    ChangecolorDirective,
+    ShowHideDirective,
+    ShowimageComponent
   ],
   imports: [
     BrowserModule,

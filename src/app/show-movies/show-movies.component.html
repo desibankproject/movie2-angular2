@@ -1,6 +1,14 @@
+
+<h1 *tshow="showHide">This is under the construction!!!!!!!!!!!!</h1>
+
+<ng-template [tshow]="showHide">
+	<h1>This is under the construction!!!!!!!!!!!!</h1>
+</ng-template>
+
+
 <hr/>
-	<h2 appChangecolor [nagendra]="color">Below is remote data coming from rest api</h2>
-	// inside the html file
+	<h2 changecolor [nagendra]="color">Below is remote data coming from rest api</h2>
+
 
 <div class="row" *ngIf="error.length > 0">
     <div class="col-sm-12 alert alert-warning">
@@ -16,7 +24,9 @@
 			<td>{{movie.year}}</td>
 			<td>{{movie.language}}</td>
 			<td>{{movie.story}}</td>
-			<td><img src="http://localhost:4000/movies/images/{{movie._id}}" style="height: 100px;"></td>
+			<td>
+				<showimage [imageid]="movie._id"></showimage>				
+			</td>
 			<td>
 					<a [routerLink]="" (click)="deleteMovie(movie)"><img src="assets/img/delete.jfif" style="height: 60px;">
 					</a>

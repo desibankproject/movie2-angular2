@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../services/movie.service';
 import { Movie } from '../models/movie.model';
+import { MovieDataShareService } from '../services/movie-datashare.service';
 
 @Component({
   selector: 'app-show-movies',
@@ -21,15 +22,25 @@ export class ShowMoviesComponent implements OnInit {
 
   public color:String="blue";
 
+  public showHide:boolean=true;
+
   public remoteMovies:Movie[]=[];
   public error:String=""; 
   //private movieService:MovieService;
-  constructor(private movieService:MovieService) {
+  constructor(private movieService:MovieService,private movieDataShareService:MovieDataShareService) {
     //this.movieService=movieService;
     
   }
 
   ngOnInit() {
+    //subscribe for behaviorSubject  
+    this.movieDataShareService.observableMoview.subscribe(movie=>{
+      console.log("NKKEKEKEKE");
+      console.log(movie);
+      this.remoteMovies.push(movie);
+    });
+
+
     this.movieService.getMovies().subscribe(response=>{
       console.log("Loading data from");
       console.log(response);

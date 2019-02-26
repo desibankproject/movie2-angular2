@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input,AfterViewInit, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appChangecolor]'
+  selector: '[changecolor]'
 })
 export class ChangecolorDirective implements AfterViewInit{
 
@@ -16,7 +16,8 @@ export class ChangecolorDirective implements AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    this.element.nativeElement.style.display = this.pcolor;
+    // this.element.nativeElement.style.display = this.pcolor;
+    this.element.nativeElement.style.backgroundColor=this.pcolor;
     console.log("ngAfterViewInit is called second");
   }
 

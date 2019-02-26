@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpRequest, HttpEvent, HttpResponse, HttpErro
 import { Movie } from '../models/movie.model';
 import { ApplicationResponse } from '../models/application-response';
 import { Observable } from 'rxjs';
+import { AppConfig } from '../config/app.config';
 
 
 @Injectable({
@@ -11,6 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class MovieService {
   //private http: HttpClient
+  private ENDPOINT_URI=AppConfig.REST_API_ENDPOINT;
   constructor(private http: HttpClient) {
     //this.http=http;
   }
@@ -18,7 +20,7 @@ export class MovieService {
 
   public getMovieByMid(_mid):Observable<Movie>{
     //METHOD=GET
-       const MOVIES_REST_API="http://localhost:4000/movies/"+_mid;
+       const MOVIES_REST_API=this.ENDPOINT_URI+"/movies/"+_mid;
        return this.http.get<Movie>(MOVIES_REST_API);
   }
 
@@ -27,7 +29,7 @@ export class MovieService {
     console.log(movie);
 
     //But method should be POST
-    const MOVIE_UPLOAD_ENDPOINT = "http://localhost:4000/movies";
+    const MOVIE_UPLOAD_ENDPOINT = this.ENDPOINT_URI+"/movies";
     //return this.http.post(endpoint,vendor,httpOptions);
     let formdata: FormData = new FormData();
     formdata.append('title', movie.title+"");
@@ -49,7 +51,7 @@ export class MovieService {
 
    public deleteMovieByMid(mid:String):Observable<ApplicationResponse>{
     //METHOD=GET
-       const MOVIES_DELETE_REST_API="http://localhost:4000/movies/"+mid;
+       const MOVIES_DELETE_REST_API=this.ENDPOINT_URI+"/movies/"+mid;
        return this.http.delete<ApplicationResponse>(MOVIES_DELETE_REST_API);
   }
 
@@ -58,7 +60,7 @@ export class MovieService {
   //This code is running on port 4200
   public getMovies():Observable<Movie[]>{
     //METHOD=GET
-       const MOVIES_REST_API="http://localhost:4000/tmovies";
+       const MOVIES_REST_API=this.ENDPOINT_URI+"/tmovies";
        return this.http.get<Movie[]>(MOVIES_REST_API);
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { MovieService } from '../services/movie.service';
+import { MovieDataShareService } from '../services/movie-datashare.service';
 
 @Component({
   selector: 'app-add-movie',
@@ -22,7 +23,7 @@ export class AddMovieComponent implements OnInit {
   public remoteMovies:Movie[]=[];
 
   //private movieService:MovieService;
-  constructor(private movieService:MovieService) {
+  constructor(private movieService:MovieService,private movieDataShareService:MovieDataShareService) {
     //this.movieService=movieService;
     
   }
@@ -56,6 +57,7 @@ export class AddMovieComponent implements OnInit {
         console.log("_@)@)@)@)hey uploaded");
         console.log("____this special data...")
         console.log(data.body);
+        this.movieDataShareService.addShareMovie(this.movie);
         //because we want to show this on GUI as well
           this.message="Hey! your movie has been upload successfully....";
       });
