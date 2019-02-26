@@ -34,10 +34,22 @@ export class ShowMoviesComponent implements OnInit {
 
   ngOnInit() {
     //subscribe for behaviorSubject  
-    this.movieDataShareService.observableMoview.subscribe(movie=>{
+  //   this.movieDataShareService.observableMoview
+  // .subscribe({
+  //   next: () => {
+  //     console.log("received response")
+  //   },
+  //   error: err => {
+  //     console.log("error occurred")
+  //   },
+  //   complete: () => {
+  //     console.log("subscription completed")
+  //   },
+  // })
+     this.movieDataShareService.observableMoview.subscribe(movie=>{
       console.log("NKKEKEKEKE");
-      console.log(movie);
-      this.remoteMovies.push(movie);
+     console.log(movie);
+     this.remoteMovies.push(movie);
     });
 
 

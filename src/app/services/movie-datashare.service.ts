@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, AsyncSubject } from 'rxjs';
 import { Movie } from '../models/movie.model';
 
 /**
@@ -11,7 +11,7 @@ import { Movie } from '../models/movie.model';
   })
   export class MovieDataShareService {
 
-    private movieData=new BehaviorSubject<Movie>(new Movie());
+    private movieData=new AsyncSubject<Movie>();
     public observableMoview=this.movieData.asObservable();
 
 
@@ -22,6 +22,7 @@ import { Movie } from '../models/movie.model';
     public addShareMovie(movie) : void {
          //we are publishing the data
          this.movieData.next(movie);
+         this.movieData.complete();
     }
 
   }  
